@@ -11,7 +11,7 @@ type Project = {
 };
 
 export default function Admin() {
-  // Estados  const [projects, setProjects] = useState<Project[]>([]);
+  const [projects, setProjects] = useState<Project[]>([]);
   const [form, setForm] = useState({
     titulo: "",
     descricao: "",
@@ -54,7 +54,8 @@ export default function Admin() {
     }
   };
 
-  // Função para salvar (POST) ou atualizar (PATCH) um projeto  const salvarProjeto = async (e: React.FormEvent) => {
+  // Função para salvar (POST) ou atualizar (PATCH) um projeto
+  const salvarProjeto = async (e: React.FormEvent) => {
     e.preventDefault();
     const { titulo, descricao, categoria, imagem_url } = form;
 
@@ -95,7 +96,7 @@ export default function Admin() {
   const deletarProjeto = async (id: string) => {
     try {
       const response = await fetch(
-        `${supabaseUrl}/rest/v1/projetos?Id=eq.${id}`,
+        `${supabaseUrl}/rest/v1/projetos?id=eq.${id}`,
         { method: "DELETE", headers }
       );
       if (!response.ok) throw new Error("Erro ao excluir projeto");
@@ -132,7 +133,8 @@ export default function Admin() {
         {/* Título */}
         <div>
           <label className="block text-sm font-medium text-stone-300 mb-1">
-            Título          </label>
+            Título
+          </label>
           <input
             type="text"
             value={form.titulo}
@@ -145,7 +147,8 @@ export default function Admin() {
         {/* Descrição */}
         <div>
           <label className="block text-sm font-medium text-stone-300 mb-1">
-            Descrição          </label>
+            Descrição
+          </label>
           <textarea
             value={form.descricao}
             onChange={(e) => setForm({ ...form, descricao: e.target.value })}
@@ -233,7 +236,8 @@ export default function Admin() {
               </div>
             </div>
             <div className="flex gap-2">
-              <button                onClick={() => handleEditClick(project)}
+              <button
+                onClick={() => handleEditClick(project)}
                 className="text-amber-400 hover:text-amber-800"
               >
                 <span className="w-4 h-4">✏️</span>
@@ -259,7 +263,8 @@ export default function Admin() {
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
       <div className="bg-[#2d3748] p-6 rounded-xl shadow-lg w-full max-w-md">
         <h3 className="text-xl font-semibold text-white mb-2">
-          Excluir Projeto        </h3>
+          Excluir Projeto
+        </h3>
         <p className="text-stone-300 mb-4">
           Tem certeza de que deseja excluir este projeto?
         </p>
